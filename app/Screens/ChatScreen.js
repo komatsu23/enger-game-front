@@ -1,8 +1,8 @@
-import React from 'react';
-import { StyleSheet, Text, View,ScrollView,Button, ViewComponent,Image, SafeAreaView } from 'react-native';
-import { NavigationContainer } from "@react-navigation/native";
+import React,{userState,useEffect} from 'react';
+import { StyleSheet,  SafeAreaView } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
-import { TouchableOpacity, FlatList } from 'react-native-gesture-handler';
+import {  FlatList } from 'react-native-gesture-handler';
+import axios from 'axios';
 import Listitem from './Listitem';
 import articles from '../dummies/articles.json';
 
@@ -25,15 +25,17 @@ const styles = StyleSheet.create({
 
 export default  ChatScreen =(props)=> {
   const {navigation} = props;
-  const items = articles.map((articles,index) => {
-    return(
-    <Listitem 
-      imageUrl={articles.urlToImage}
-      title={articles.title}
-      author={articles.author}
-      key={index}
-    />
-  )})
+  
+
+  try{
+    const result =  axios.get('https://facebook.github.io/react-native/movies.json');
+      //console.log(result);
+    const a = result;
+    } catch (error) {
+      console.log("error!!");
+    }
+
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
@@ -43,7 +45,7 @@ export default  ChatScreen =(props)=> {
           imageUrl={item.urlToImage}
           title={item.title}
           author={item.author}
-          onPress={()=> navigation.navigate("Message")}
+          onPress={()=> navigation.navigate("MessageScreen")}
     />
       )}
         keyExtractor={(item,index) => index.toString()}

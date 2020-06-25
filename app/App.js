@@ -13,7 +13,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from '@react-navigation/stack';
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import AppNavigator from './Navigator/AppNavigator';
-
+import ProfileScreen from './Screens/ProfileScreen';
 
 
 
@@ -130,7 +130,7 @@ function ChatsScreen() {
   return (
     <View style={styles.back}>
        <AppNavigator/>
-     <View style={styles.topbar}>
+     <View>
       </View>
       <View>
        
@@ -140,17 +140,23 @@ function ChatsScreen() {
 }
 
 function GameScreen() {
+
+
+  
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Game!</Text>
+     
+     <ProfileScreen />
+
     </View>
   );
-}
 
+  }
 function GuildScreen() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Guild!!</Text>
+  
+  
     </View>
   );
 }
