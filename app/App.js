@@ -8,9 +8,14 @@ import {
   FlatList,
   ActivityIndicator,
 } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from '@react-navigation/stack';
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import AppNavigator from './Navigator/AppNavigator';
+import ProfileScreen from './Screens/ProfileScreen';
+
+
 
 class Cards extends PureComponent {
   constructor(props) {
@@ -61,6 +66,8 @@ class Cards extends PureComponent {
   }
 }
 
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -79,8 +86,8 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOpacity: 1,
     shadowOffset: {
-      width: 3,
-      height: 3,
+    width: 3,
+    height: 3,
     },
   },
   cardImage: {
@@ -93,6 +100,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  
+  back:{
+    backgroundColor: '#c0c0c0',
+    height:710,
+    flex:1,
+ 
+    
+  }
 });
 
 function ItemsScreen() {
@@ -113,29 +128,44 @@ function SavesScreen() {
 
 function ChatsScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Chats!</Text>
+    <View style={styles.back}>
+       <AppNavigator/>
+     <View>
+      </View>
+      <View>
+       
+      </View>
     </View>
   );
 }
 
 function GameScreen() {
+
+
+  
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Game!</Text>
+     
+     <ProfileScreen />
+
     </View>
   );
-}
 
+  }
 function GuildScreen() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Guild!</Text>
+  
+  
     </View>
   );
 }
 
+
+
+
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
@@ -147,6 +177,9 @@ export default function App() {
         <Tab.Screen name="Game" component={GameScreen} />
         <Tab.Screen name="Guild" component={GuildScreen} />
       </Tab.Navigator>
+      
     </NavigationContainer>
+
   );
+  
 }
